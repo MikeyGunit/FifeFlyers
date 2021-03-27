@@ -150,7 +150,11 @@ class _ListPageState extends State<ListPage> {
               );
             } else {
               return Column(children: <Widget>[
+
+                //Start of the Hero "App Only" news feed.
                 Text("hey"),
+
+                // Start of the bottom news feed.
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.all(2.0),
@@ -167,7 +171,7 @@ class _ListPageState extends State<ListPage> {
                             color: Color.fromRGBO(31, 66, 146, 1.0),
                             image: DecorationImage(
                               image: NetworkImage(
-                                  'https://www.fifeflyers.co.uk/NewWebsite/App/Images/Bg.jpg'),
+                                  "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/Hero/" + snapshot.data[index].heroImage),
                               alignment: Alignment.topRight,
                               fit: BoxFit.cover,
                               colorFilter: new ColorFilter.mode(
