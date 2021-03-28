@@ -5,7 +5,7 @@ import 'package:flutter_session/flutter_session.dart';
 import 'package:blahblah/LoginBody.dart';
 
 // Keep for the dashboard screen.
-import 'dashboard.dart';
+import 'Dashboard.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

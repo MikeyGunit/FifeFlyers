@@ -10,7 +10,6 @@ import 'dart:convert';
 
 // import 'package:flutter_app/Shop.dart';
 
-
 class Dashboard extends StatelessWidget {
 // Creating String Var to Hold sent username.
   // This is commented out if we dont need it below.
@@ -84,6 +83,9 @@ class _ListPageState extends State<ListPage> {
     ],
   );
 
+  final List<String> entries = <String>['A', 'B', 'C'];
+  final List<int> colorCodes = <int>[600, 500, 100];
+
   // Bottom Navigation bar
   get makeBottom => Container(
         height: 55.0,
@@ -150,13 +152,37 @@ class _ListPageState extends State<ListPage> {
               );
             } else {
               return Column(children: <Widget>[
-
                 //Start of the Hero "App Only" news feed.
-                Text("hey"),
+                Container(
+                  height: 200,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: entries.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/Hero/2020-03-14FlyersVsGlasgow.jpg"),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          //height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          //child:
+                        );
+                      }
 
+                      // return makeCard(DboardEntries[index]);
+                      ),
+                ),
+
+                SizedBox(
+                  height: 10,
+                ),
                 // Start of the bottom news feed.
                 Expanded(
-                  child: ListView.builder(
+                  child: ListView.separated(
                     padding: const EdgeInsets.all(2.0),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -171,7 +197,8 @@ class _ListPageState extends State<ListPage> {
                             color: Color.fromRGBO(31, 66, 146, 1.0),
                             image: DecorationImage(
                               image: NetworkImage(
-                                  "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/Hero/" + snapshot.data[index].heroImage),
+                                  "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/Hero/" +
+                                      snapshot.data[index].heroImage),
                               alignment: Alignment.topRight,
                               fit: BoxFit.cover,
                               colorFilter: new ColorFilter.mode(
@@ -191,8 +218,7 @@ class _ListPageState extends State<ListPage> {
                               child: Column(
                                 children: [
                                   // Display the correct icon for the media type.
-                                  Icon(Icons.ondemand_video,
-                                      color: Colors.white),
+                                  Icon(Icons.article, color: Colors.white),
 
                                   // Display the media type text.
                                   Text(
@@ -222,12 +248,13 @@ class _ListPageState extends State<ListPage> {
 
                             subtitle: Row(
                               children: <Widget>[
-                                Text(snapshot.data[index].date,
-                                    style: TextStyle(
-                                        color:
-                                            Color.fromRGBO(250, 208, 26, 1.0),
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 11))
+                                Text(
+                                  snapshot.data[index].date,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      //fontStyle: FontStyle.italic,
+                                      fontSize: 11),
+                                ),
                               ],
                             ),
                             trailing: Icon(Icons.keyboard_arrow_right,
@@ -236,8 +263,8 @@ class _ListPageState extends State<ListPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      DetailPage(dboardEntry: snapshot.data[index]),
+                                  builder: (context) => DetailPage(
+                                      dboardEntry: snapshot.data[index]),
                                 ),
                               );
                             },
@@ -247,6 +274,8 @@ class _ListPageState extends State<ListPage> {
 
                       // return makeCard(DboardEntries[index]);
                     },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(),
                   ),
                 ),
               ]);
