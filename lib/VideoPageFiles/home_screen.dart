@@ -4,7 +4,7 @@ import 'video_model.dart';
 import 'video_screen.dart';
 import 'api_service.dart';
 
-import 'package:blahblah/dashboard.dart';
+import 'package:blahblah/Dashboard.dart';
 import 'package:blahblah/Shop.dart';
 
 class HomeScreen extends StatefulWidget {
