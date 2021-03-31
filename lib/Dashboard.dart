@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'FiftyFifty.dart';
 
 // import 'package:flutter_app/Shop.dart';
 
@@ -44,6 +45,37 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
+
+
+  // Future to create the App Exclusive block.
+  Future<List<DboardAppEntry>> _populateNews2() async {
+    var appData = await http
+        .get(
+        'https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/getAppNews.php');
+
+
+    var jsonAppData = json.decode(appData.body);
+
+    List<DboardAppEntry> news2 = [];
+
+    for (var u in jsonAppData) {
+      var entry = DboardAppEntry(
+          id: u["id"],
+          date: u["date"],
+          mediaType: u["mediaType"],
+          title: u["title"],
+          text: u["text"],
+          heroImage: u["heroImage"]);
+
+      news2.add(entry);
+    }
+
+    print(news2.length);
+
+    return news2;
+  }
+
+  // Future to create the news block.
   Future<List<DboardEntry>> _populateNews() async {
     var newsData = await http
         .get('https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/getNews.php');
@@ -74,75 +106,82 @@ class _ListPageState extends State<ListPage> {
   final topAppBar = AppBar(
     elevation: 0.1,
     backgroundColor: Color.fromRGBO(31, 66, 146, 1.0),
-    title: Text("Fife Flyers News"),
-    actions: <Widget>[
-      IconButton(
-        icon: Icon(Icons.list),
-        onPressed: () {},
-      )
-    ],
+    title: Text("Fife Flyers Dashboard"),
+    //actions:
   );
 
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
 
-  // Bottom Navigation bar
-  get makeBottom => Container(
-        height: 55.0,
-        child: BottomAppBar(
-          color: Color.fromRGBO(31, 66, 146, 1.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              // Home Button
-              IconButton(
-                icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
-                  );
-                },
-              ),
+  get makeBody1 =>
+      Container(
+        child: FutureBuilder(
+            future: _populateNews2(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.data == null) {
+                return Container(
+                  child: Center(child: Text("Loading...")),
+                );
+              } else {
+                return InkWell(
 
-              // Shop Button
-              IconButton(
-                icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Shop()),
-                  );
-                },
-              ),
+                  /*
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DetailPage(
+                              dboardAppEntry: snapshot.data[index]),
+                            ),);
+                    
+                  },
 
-              Image.asset(
-                'assets/images/Logo.png',
-                width: 70,
-              ),
+                   */
 
-              // Video Library Button
-              IconButton(
-                icon: Icon(Icons.video_library_outlined, color: Colors.white),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
-                },
-              ),
+                  child: Container(
+                    height: 200,
+                    child: ListView.builder(
 
-              // Profile Button
-              IconButton(
-                icon: Icon(Icons.account_box, color: Colors.white),
-                onPressed: () {},
-              )
-            ],
-          ),
-        ),
-      );
+                        scrollDirection: Axis.horizontal,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/App/Hero/" +
+                                        snapshot.data[index].heroImage),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            //height: 50,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            //child:
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailPage2(
+                                          dboardAppEntry: snapshot.data[index]),
+                                ),
+                              );
+                            },
 
-  get makeBody => Container(
+                          ),
+                          );
+                        }),
+                  ),
+                );
+              }
+            }),);
+
+  // Middle section (page content)
+  get makeBody =>
+      Container(
         child: FutureBuilder(
           future: _populateNews(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -152,34 +191,28 @@ class _ListPageState extends State<ListPage> {
               );
             } else {
               return Column(children: <Widget>[
-                //Start of the Hero "App Only" news feed.
-                Container(
-                  height: 200,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: entries.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/Hero/2020-03-14FlyersVsGlasgow.jpg"),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          //height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          //child:
-                        );
-                      }
 
-                      // return makeCard(DboardEntries[index]);
-                      ),
+                // Top "App Exclusive" Hero box.
+                makeBody1,
+
+                /* Start of an interactive Dashboard - We'll continue this in the future.
+
+                Container(
+                  child: Row( children: <Widget> [
+                    Text("Welcome Username"),
+
+                    Text("Flyers Points: 0"),
+
+                  ]
+                  ),
                 ),
+
+                 */
 
                 SizedBox(
                   height: 10,
                 ),
+
                 // Start of the bottom news feed.
                 Expanded(
                   child: ListView.separated(
@@ -263,8 +296,9 @@ class _ListPageState extends State<ListPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DetailPage(
-                                      dboardEntry: snapshot.data[index]),
+                                  builder: (context) =>
+                                      DetailPage(
+                                          dboardEntry: snapshot.data[index]),
                                 ),
                               );
                             },
@@ -272,16 +306,78 @@ class _ListPageState extends State<ListPage> {
                         ),
                       );
 
-                      // return makeCard(DboardEntries[index]);
                     },
                     separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
+                    const Divider(),
                   ),
                 ),
               ]);
             }
             ;
           },
+        ),
+      );
+
+  // Bottom Navigation bar
+  get makeBottom =>
+      Container(
+        height: 55.0,
+        child: BottomAppBar(
+          color: Color.fromRGBO(31, 66, 146, 1.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              // Home Button
+              IconButton(
+                icon: Icon(Icons.home, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Dashboard()),
+                  );
+                },
+              ),
+
+              // Shop Button
+              IconButton(
+                icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Shop()),
+                  );
+                },
+              ),
+
+              Image.asset(
+                'assets/images/Logo.png',
+                width: 70,
+              ),
+
+              // Video Library Button
+              IconButton(
+                icon: Icon(Icons.video_library_outlined, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
+              ),
+
+              // Profile Button
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => FiftyFifty()));
+                },
+                child: Image.asset(
+                  'assets/images/5050_outlined.png',
+                  width: 20,
+                ),
+              ),
+            ],
+          ),
         ),
       );
 
