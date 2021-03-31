@@ -14,3 +14,20 @@ class DboardEntry {
         this.text,
         this.heroImage});
 }
+
+class DboardAppEntry {
+  String id;
+  String date;
+  String mediaType;
+  String title;
+  String text;
+  String heroImage;
+
+  DboardAppEntry(
+      {this.id,
+        this.date,
+        this.mediaType,
+        this.title,
+        this.text,
+        this.heroImage});
+}

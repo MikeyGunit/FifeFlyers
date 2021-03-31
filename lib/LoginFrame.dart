@@ -4,9 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_session/flutter_session.dart';
 
-
 class Login extends StatefulWidget {
-
   final Function cancelToHome;
   final Function goToLostPassword;
 
@@ -14,25 +12,20 @@ class Login extends StatefulWidget {
 
   @override
   _LoginState createState() => _LoginState();
-
-
 }
 
 class _LoginState extends State<Login> {
-
-
   // For CircularProgressIndicator.
-  bool visible = false ;
+  bool visible = false;
 
   // Getting value from TextField widget.
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future userLogin() async{
-
+  Future userLogin() async {
     // Showing CircularProgressIndicator.
     setState(() {
-      visible = true ;
+      visible = true;
     });
 
     // Getting value from Controller
@@ -40,10 +33,11 @@ class _LoginState extends State<Login> {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/login_user.php';
+    var url =
+        'https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/login_user.php';
 
     // Store all data with Param Name.
-    var data = {'username' : username, 'password' : password};
+    var data = {'username': username, 'password': password};
 
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
@@ -52,9 +46,7 @@ class _LoginState extends State<Login> {
     var message = jsonDecode(response.body);
 
     // If the Response Message is Matched.
-    if(message == 'Login Matched')
-    {
-
+    if (message == 'Login Matched') {
       await FlutterSession().set('token', username);
 
       // Hiding the CircularProgressIndicator.
@@ -62,13 +54,10 @@ class _LoginState extends State<Login> {
         visible = false;
       });
 
-      // Navigate to Profile Screen & Sending Email to Next Screen.
+      // Send them to the dashboard.
       Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Dashboard())
-      );
-    }else{
-
+          context, MaterialPageRoute(builder: (context) => Dashboard()));
+    } else {
       // If Username or Password did not Matched.
       // Hiding the CircularProgressIndicator.
       setState(() {
@@ -92,7 +81,6 @@ class _LoginState extends State<Login> {
           );
         },
       );
-
     }
   }
 
@@ -104,167 +92,130 @@ class _LoginState extends State<Login> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-            children: <Widget> [
-              Text(
-                'SIGN IN',
-                style: TextStyle(
-                    color: Colors.yellow,
-                    fontSize: 40,
-                    fontFamily: 'CaptainAmerican',
-                    shadows: [
-                      Shadow(
-                        blurRadius: 2.0,
-                        color: Colors.blue,
-                        offset: Offset(1.0, 1.0),
-                      )
-                    ]
-                ),
+          children: <Widget>[
+            Text(
+              'SIGN IN',
+              style: TextStyle(
+                color: Color.fromRGBO(250, 208, 26, 1.0),
+                fontSize: 40,
+                fontFamily: 'CaptainAmerican',
+                shadows: [
+                  Shadow(
+                    blurRadius: 2.0,
+                    color: Color.fromRGBO(31, 66, 146, 1.0),
+                    offset: Offset(1.0, 1.0),
+                  )
+                ],
               ),
+            ),
 
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter Username',
-                  hintStyle: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                    decorationColor: Colors.red,
-                  ),
-                  focusColor: Colors.white,
+            // Username Field
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Enter Username',
+                hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.8),
                 ),
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                ),
-                controller: usernameController,
-                autocorrect: true,
+                focusColor: Colors.white,
               ),
-
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  hintStyle: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                    decorationColor: Colors.red,
-                  ),
-                  focusColor: Colors.white,
-                ),
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                ),
-                controller: passwordController,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22.0,
               ),
+              controller: usernameController,
+              autocorrect: true,
+            ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Checkbox(
-                    activeColor: Colors.blue,
+            // Password Field
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: 'Password',
+                hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.8),
+                ),
+                focusColor: Colors.white,
+              ),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22.0,
+              ),
+              controller: passwordController,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Checkbox(
+                    activeColor: Color.fromRGBO(31, 66, 146, 1.0),
                     value: _rememberPassword,
                     onChanged: (newValue) {
                       setState(() {
                         _rememberPassword = newValue;
-
                       });
-
                     }),
-
-
-                  Text(
-                    'Remember Password',
+                Text(
+                  'Remember Password',
+                  style: TextStyle(
+                    color: Color.fromRGBO(31, 66, 146, 1.0),
+                    fontSize: 16.0,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 100,
+              child: RaisedButton(
+                onPressed: userLogin,
+                color: Color.fromRGBO(31, 66, 146, 1.0),
+                textColor: Colors.white,
+                padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
+                shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0)),
+                child: Text('LOGIN',
+                    style: TextStyle(fontSize: 20.0, shadows: [
+                      Shadow(
+                        blurRadius: 2.0,
+                        color: Color.fromRGBO(250, 208, 26, 1.0),
+                        offset: Offset(1.0, 1.0),
+                      )
+                    ])),
+              ),
+            ),
+            Visibility(
+                visible: visible,
+                child: Container(
+                    margin: EdgeInsets.only(bottom: 30),
+                    child: CircularProgressIndicator())),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                    widget.goToLostPassword();
+                  },
+                  child: Text(
+                    'Forgotten password?',
                     style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 16.0,
+                      color: Color.fromRGBO(250, 208, 26, 1.0),
                     ),
                   ),
-
-                ],
-              ),
-
-              SizedBox(
-                width: 100,
-                child: RaisedButton(
-                  onPressed: userLogin,
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
-                  shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                  child: Text('LOGIN',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2.0,
-                              color: Colors.yellow,
-                              offset: Offset(1.0, 1.0),
-                            )
-                          ])),
-
                 ),
-              ),
-
-              Visibility(
-                  visible: visible,
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 30),
-                      child: CircularProgressIndicator()
-                  )
-              ),
-
-              LoginLower(),
-
-            ]
+                InkWell(
+                  onTap: () {
+                    widget.cancelToHome();
+                  },
+                  child: Text(
+                    'Home Screen',
+                    style: TextStyle(
+                      color: Color.fromRGBO(250, 208, 26, 1.0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
-
-  }
-
-
-}
-
-class LoginLower extends StatelessWidget {
-
-  final Function cancelToHome;
-  final Function goToLostPassword;
-
-  LoginLower({this.cancelToHome, this.goToLostPassword});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-
-        InkWell(
-
-          onTap: () {
-            print("test");
-            goToLostPassword();
-
-
-          },
-
-          child: Text('Forgotten password?',
-            style: TextStyle(
-              color: Colors.yellow,
-            ),
-          ),
-        ),
-
-        InkWell(
-
-          onTap: () {
-            cancelToHome();
-          },
-          child:  Text('Home Screen',
-            style: TextStyle(
-              color: Colors.yellow,
-            ),
-          ),
-        ),
-
-      ],
-    );
-
   }
 }

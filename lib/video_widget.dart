@@ -15,7 +15,7 @@ class _VideoWidgetState extends State<VideoWidget> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(
-        'assets/video/Breathing2.mp4')
+        'assets/video/Breathing_portrait.mp4')
       ..initialize().then((_) {
         _controller.setVolume(0.0);
         _controller.setLooping(true);
@@ -28,12 +28,9 @@ class _VideoWidgetState extends State<VideoWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: _controller.value.initialized
-          ? AspectRatio(
-        aspectRatio: _controller.value.aspectRatio,
+
         child: VideoPlayer(_controller),
-      )
-          : Container(),
+     
     );
 
   }

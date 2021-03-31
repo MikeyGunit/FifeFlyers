@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blahblah/FiftyFifty.dart';
 import 'channel_model.dart';
 import 'video_model.dart';
 import 'video_screen.dart';
@@ -147,53 +148,55 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-
           // Home Button
           IconButton(
             icon: Icon(Icons.home_outlined, color: Colors.white),
-
             onPressed: () {
-
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Dashboard()),
               );
-
             },
           ),
 
           // Shop Button
           IconButton(
             icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
-
             onPressed: () {
-
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Shop()),
               );
-
             },
+          ),
+
+          Image.asset(
+            'assets/images/Logo.png',
+            width: 70,
           ),
 
           // Video Library Button
           IconButton(
-            icon: Icon(Icons.video_library_outlined, color: Colors.white),
+            icon: Icon(Icons.video_library, color: Colors.white),
             onPressed: () {
-
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => HomeScreen()),
               );
-
             },
           ),
 
           // Profile Button
-          IconButton(
-            icon: Icon(Icons.account_box, color: Colors.white),
-            onPressed: () {},
-          )
+          InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => FiftyFifty()));
+            },
+            child: Image.asset(
+              'assets/images/5050_outlined.png',
+              width: 20,
+            ),
+          ),
         ],
       ),
     ),

@@ -13,8 +13,15 @@ class HomeWidget extends StatelessWidget {
       child: Column(
           children: <Widget> [
 
+           SizedBox(
+             height: 25,
+           ),
+
+            Image.asset("assets/images/Logo.png",
+           width: 300,),
+
             SizedBox(
-              height: 100,
+              height: 25,
             ),
 
             Row(
@@ -31,13 +38,13 @@ class HomeWidget extends StatelessWidget {
                     child: Text(
                       'LOGIN',
                       style: TextStyle(
-                          color: Colors.yellow,
+                          color: Color.fromRGBO(250, 208, 26, 1.0),
                           fontSize: 40,
                           fontFamily: 'CaptainAmerican',
                           shadows: [
                             Shadow(
                               blurRadius: 2.0,
-                              color: Colors.blue,
+                              color: Color.fromRGBO(31, 66, 146, 1.0),
                               offset: Offset(1.0, 1.0),
                             )
                           ]
@@ -51,13 +58,13 @@ class HomeWidget extends StatelessWidget {
                     child: Text(
                       'REGISTER',
                       style: TextStyle(
-                          color: Colors.yellow,
+                          color: Color.fromRGBO(250, 208, 26, 1.0),
                           fontSize: 40,
                           fontFamily: 'CaptainAmerican',
                           shadows: [
                             Shadow(
                               blurRadius: 2.0,
-                              color: Colors.blue,
+                              color: Color.fromRGBO(31, 66, 146, 1.0),
                               offset: Offset(1.0, 1.0),
                             )
                           ]
