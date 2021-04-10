@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'Dashboard.dart';
 import 'dart:convert';
@@ -90,7 +91,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(40.0),
         child: Column(
           children: <Widget>[
             Text(
@@ -142,25 +143,34 @@ class _LoginState extends State<Login> {
               ),
               controller: passwordController,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Checkbox(
-                    activeColor: Color.fromRGBO(31, 66, 146, 1.0),
-                    value: _rememberPassword,
-                    onChanged: (newValue) {
-                      setState(() {
-                        _rememberPassword = newValue;
-                      });
-                    }),
-                Text(
-                  'Remember Password',
-                  style: TextStyle(
-                    color: Color.fromRGBO(31, 66, 146, 1.0),
-                    fontSize: 16.0,
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Checkbox(
+                      activeColor: Color.fromRGBO(31, 66, 146, 1.0),
+                      value: _rememberPassword,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _rememberPassword = newValue;
+                        });
+                      }),
+                  Text(
+                    'Remember Password',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 2.0,
+                            color: Color.fromRGBO(31, 66, 146, 1.0),
+                            offset: Offset(1.0, 1.0),
+                          )
+                        ]),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               width: 100,
@@ -171,14 +181,13 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
                 shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(30.0)),
-                child: Text('LOGIN',
-                    style: TextStyle(fontSize: 20.0, shadows: [
-                      Shadow(
-                        blurRadius: 2.0,
-                        color: Color.fromRGBO(250, 208, 26, 1.0),
-                        offset: Offset(1.0, 1.0),
-                      )
-                    ])),
+                child: Text(
+                  'LOGIN',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontFamily: 'CaptainAmerican',
+                  ),
+                ),
               ),
             ),
             Visibility(
@@ -186,32 +195,49 @@ class _LoginState extends State<Login> {
                 child: Container(
                     margin: EdgeInsets.only(bottom: 30),
                     child: CircularProgressIndicator())),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                InkWell(
-                  onTap: () {
-                    widget.goToLostPassword();
-                  },
-                  child: Text(
-                    'Forgotten password?',
-                    style: TextStyle(
-                      color: Color.fromRGBO(250, 208, 26, 1.0),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      widget.goToLostPassword();
+                    },
+                    child: Text(
+                      'Forgotten password?',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontStyle: FontStyle.italic,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2.0,
+                              color: Color.fromRGBO(31, 66, 146, 1.0),
+                              offset: Offset(1.0, 1.0),
+                            )
+                          ]),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: () {
-                    widget.cancelToHome();
-                  },
-                  child: Text(
-                    'Home Screen',
-                    style: TextStyle(
-                      color: Color.fromRGBO(250, 208, 26, 1.0),
+                  InkWell(
+                    onTap: () {
+                      widget.cancelToHome();
+                    },
+                    child: Text(
+                      'Home Screen',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontStyle: FontStyle.italic,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2.0,
+                              color: Color.fromRGBO(31, 66, 146, 1.0),
+                              offset: Offset(1.0, 1.0),
+                            )
+                          ]),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

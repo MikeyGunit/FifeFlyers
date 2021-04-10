@@ -43,7 +43,7 @@ class MenuFrame extends StatelessWidget {
                       ),
                       Login(
                         goToLostPassword: () {
-                          pageController.animateToPage(1,
+                          pageController.animateToPage(3,
                               duration: Duration(milliseconds: 200),
                               curve: Curves.easeIn);
                         },
@@ -53,7 +53,15 @@ class MenuFrame extends StatelessWidget {
                               curve: Curves.easeIn);
                         },
                       ),
-                      LostPassword(),
+                      LostPassword(
+                        cancelToHomeScreen: () {
+                          pageController.animateToPage(0,
+                              duration: Duration(milliseconds: 200),
+                              curve: Curves.easeIn);
+                        },
+
+
+                      ),
                     ],
                   ),
                 ),

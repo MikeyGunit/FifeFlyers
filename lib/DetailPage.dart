@@ -42,10 +42,30 @@ class DetailPage extends StatelessWidget {
       ],
     );
 
-    final bottomContentText = Column(children: <Widget>[
-      Text(dboardEntry.title),
-      Text(dboardEntry.text),
-    ]);
+    final bottomContentText = Padding(
+      padding: EdgeInsets.all(20.0),
+      child: Column(children: <Widget>[
+
+        Text(dboardEntry.title,
+        style: TextStyle(
+          color: Color.fromRGBO(250, 208, 26, 1.0),
+          fontSize: 40,
+          fontFamily: 'CaptainAmerican',
+          shadows: [
+            Shadow(
+              blurRadius: 2.0,
+              color: Color.fromRGBO(31, 66, 146, 1.0),
+              offset: Offset(1.0, 1.0),
+            )
+          ],
+        ),),
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(dboardEntry.text),
+        ),
+      ]),
+    );
 
     final topAppBar = AppBar(
       elevation: 0.1,

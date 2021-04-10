@@ -14,15 +14,17 @@ void main() {
   runApp(
       MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Fife Flyers',
+    title: 'Official Fife Flyers App',
     theme: ThemeData(
-      primarySwatch: Colors.blueGrey,
+      primarySwatch: Colors.indigo,
       secondaryHeaderColor: Colors.yellow,
+      unselectedWidgetColor: Colors.white,
       visualDensity: VisualDensity.adaptivePlatformDensity,
+
     ),
          // This is the code that should be used for live.
         //home: token != '' ? MenuFrame() : Dashboard(),
-        home: Dashboard(), // MenuFrame for the login screen, Dashboard for bypassing login.
+        home: MenuFrame(), // MenuFrame for the login screen, Dashboard for bypassing login.
   ),
   );
 }

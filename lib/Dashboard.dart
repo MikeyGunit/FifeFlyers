@@ -3,7 +3,6 @@ import 'VideoPageFiles//home_screen.dart';
 import 'package:flutter/material.dart';
 import 'DetailPage.dart';
 import 'Shop.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -101,7 +100,6 @@ class _ListPageState extends State<ListPage> {
     return news;
   }
 
-  @override
   // Top Navigation Bar
   final topAppBar = AppBar(
     elevation: 0.1,
@@ -313,7 +311,6 @@ class _ListPageState extends State<ListPage> {
                 ),
               ]);
             }
-            ;
           },
         ),
       );
