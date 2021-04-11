@@ -126,7 +126,7 @@ class FiftyFifty extends StatelessWidget {
 
             // Shop Button
             IconButton(
-              icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+              icon: Icon(Icons.video_library_outlined, color: Colors.white),
               onPressed: () {
                 Navigator.push(
                   context,

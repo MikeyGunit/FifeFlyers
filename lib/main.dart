@@ -1,3 +1,4 @@
+import 'package:blahblah/Nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
 
@@ -24,7 +25,7 @@ void main() {
     ),
          // This is the code that should be used for live.
         //home: token != '' ? MenuFrame() : Dashboard(),
-        home: MenuFrame(), // MenuFrame for the login screen, Dashboard for bypassing login.
+        home: Nav(), // MenuFrame for the login screen, Dashboard for bypassing login.
   ),
   );
 }
