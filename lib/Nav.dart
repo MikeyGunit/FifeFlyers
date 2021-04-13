@@ -14,15 +14,23 @@ class _NavState extends State<Nav> {
   List<Widget> _widgetOptions = <Widget>[
     Dashboard(),
     Shop(),
+    null,
     HomeScreen(),
     FiftyFifty()
   ];
 
   void _onItemTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index != 2) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
+
+  var blah = Image.asset(
+    'assets/images/5050_outlined.png',
+    width: 20,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -35,29 +43,27 @@ class _NavState extends State<Nav> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         backgroundColor: Color.fromRGBO(31, 66, 146, 1.0),
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.white),
+            icon: Icon(Icons.home),
             title: Text(
               'Home',
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+            icon: Icon(Icons.shopping_cart_outlined),
             title: Text(
               'Shop',
             ),
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage("assets/images/Logo.png"),
-            ),
+            icon: Image.asset("assets/images/Logo.png"),
             title: Text(
               'Logo',
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.video_library_outlined, color: Colors.white),
+            icon: Icon(Icons.video_library_outlined),
             title: Text(
               'Video',
             ),
@@ -76,6 +82,14 @@ class _NavState extends State<Nav> {
         selectedFontSize: 13.0,
         unselectedFontSize: 13.0,
       ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //     backgroundColor: Color(0xffa2a5a4),
+      //     child:
+      //     ImageIcon(
+      //       AssetImage("assets/images/Logo.png"), size: 40.0
+      //     ),
+      //     onPressed: null),
     );
   }
 }
