@@ -27,11 +27,6 @@ class _NavState extends State<Nav> {
     }
   }
 
-  var blah = Image.asset(
-    'assets/images/5050_outlined.png',
-    width: 20,
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
