@@ -25,7 +25,7 @@ void main() {
     ),
          // This is the code that should be used for live.
         //home: token != '' ? MenuFrame() : Dashboard(),
-        home: Nav(), // MenuFrame for the login screen, Dashboard for bypassing login.
+        home: MenuFrame(), // MenuFrame for the login screen, Dashboard for bypassing login.
   ),
   );
 }
