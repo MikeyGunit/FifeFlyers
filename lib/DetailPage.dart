@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'Dashboard.dart';
 import 'DboardEntry.dart';
-import 'FiftyFifty.dart';
-import 'Shop.dart';
-import 'VideoPageFiles/home_screen.dart';
 
 class DetailPage extends StatelessWidget {
   final DboardEntry dboardEntry;
@@ -79,67 +74,6 @@ class DetailPage extends StatelessWidget {
       ],
     );
 
-    final makeBottom = Container(
-      height: 55.0,
-      child: BottomAppBar(
-        color: Color.fromRGBO(31, 66, 146, 1.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            // Home Button
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-
-            // Shop Button
-            IconButton(
-              icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Shop()),
-                );
-              },
-            ),
-
-            Image.asset(
-              'assets/images/Logo.png',
-              width: 70,
-            ),
-
-            // Video Library Button
-            IconButton(
-              icon: Icon(Icons.video_library_outlined, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
-            ),
-
-            // Profile Button
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FiftyFifty()));
-              },
-              child: Image.asset(
-                'assets/images/5050_outlined.png',
-                width: 20,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-
     return Scaffold(
       appBar: topAppBar,
       body: SingleChildScrollView(
@@ -147,7 +81,6 @@ class DetailPage extends StatelessWidget {
           children: <Widget>[topContent, bottomContentText],
         ),
       ),
-      bottomNavigationBar: makeBottom,
     );
   }
 }
@@ -203,66 +136,6 @@ class DetailPage2 extends StatelessWidget {
       ],
     );
 
-    final makeBottom = Container(
-      height: 55.0,
-      child: BottomAppBar(
-        color: Color.fromRGBO(31, 66, 146, 1.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            // Home Button
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-
-            // Shop Button
-            IconButton(
-              icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Shop()),
-                );
-              },
-            ),
-
-            Image.asset(
-              'assets/images/Logo.png',
-              width: 70,
-            ),
-
-            // Video Library Button
-            IconButton(
-              icon: Icon(Icons.video_library_outlined, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
-            ),
-
-            // Profile Button
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FiftyFifty()));
-              },
-              child: Image.asset(
-                'assets/images/5050_outlined.png',
-                width: 20,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
 
     return Scaffold(
       appBar: topAppBar,
@@ -271,7 +144,6 @@ class DetailPage2 extends StatelessWidget {
           children: <Widget>[topContent, bottomContentText],
         ),
       ),
-      bottomNavigationBar: makeBottom,
     );
   }
 }
