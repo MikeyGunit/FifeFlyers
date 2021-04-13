@@ -82,14 +82,20 @@ class _NavState extends State<Nav> {
         selectedFontSize: 13.0,
         unselectedFontSize: 13.0,
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: FloatingActionButton(
-      //     backgroundColor: Color(0xffa2a5a4),
-      //     child:
-      //     ImageIcon(
-      //       AssetImage("assets/images/Logo.png"), size: 40.0
-      //     ),
-      //     onPressed: null),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 70.0),
+        child: Container(
+          height: 100,
+          width: 100,
+          child: FittedBox(
+            child: FloatingActionButton(
+              child: Image.asset("assets/images/Logo.png"),
+              backgroundColor: Color.fromRGBO(31, 66, 146, 1.0),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
