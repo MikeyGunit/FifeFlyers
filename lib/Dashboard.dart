@@ -383,71 +383,8 @@ class _ListPageState extends State<ListPage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
       appBar: topAppBar,
-      body: makeBody,
-      bottomNavigationBar: makeBottom);}
-      /*bottomNavigationBar: BottomNavigationBar(
-    items: const <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-    icon: Icon(
-    Icons.home,
-    ),
-    title: Text(
-    'Home',
-    ),
-    ),
-    BottomNavigationBarItem(
-    icon: Icon(
-    Icons.message,
-    ),
-    title: Text(
-    'Messages',
-    ),
-    ),
-    BottomNavigationBarItem(
-    icon: Icon(
-    Icons.person,
-    ),
-    title: Text(
-    'Profile',
-    ),
-    ),
-    ]
-    )
-    );
-  }*/
-}
-
-/*
-  Old code, kept around so we can get the username variable and the logout button.
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(title: Text('Profile Screen'),
-                automaticallyImplyLeading: false),
-            body: Center(
-                child: Column(children: <Widget>[
-
-                  Container(
-                      width: 280,
-                      padding: EdgeInsets.all(10.0),
-                      child: Text('Username = ' + '\n' + username,
-                          style: TextStyle(fontSize: 20))
-                  ),
-
-                  RaisedButton(
-                    onPressed: () {
-                      logout(context);
-                    },
-                    color: Colors.red,
-                    textColor: Colors.white,
-                    child: Text('Click Here To Logout'),
-                  ),
-
-                ],)
-            )
-        )
+      body: makeBody
+      // bottomNavigationBar: makeBottom);
     );
   }
-   */
+}

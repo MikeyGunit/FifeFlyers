@@ -27,13 +27,13 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bottom Navigation Bar Tutorial'),
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         backgroundColor: Color.fromRGBO(31, 66, 146, 1.0),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -49,28 +49,27 @@ class _NavState extends State<Nav> {
             ),
           ),
           BottomNavigationBarItem(
+            icon: ImageIcon(
+              AssetImage("assets/images/Logo.png"),
+            ),
+            title: Text(
+              'Logo',
+            ),
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.video_library_outlined, color: Colors.white),
             title: Text(
               'Video',
             ),
           ),
-          //mg: when this entry is added the menu background colour switches from blue to white...
           BottomNavigationBarItem(
-            icon: Icon(Icons.video_library_outlined, color: Colors.blue),
+            icon: ImageIcon(
+              AssetImage("assets/images/5050_outlined.png"),
+            ),
             title: Text(
-              'Video',
+              '50/50',
             ),
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.video_library_outlined, color: Colors.white),
-          //   // icon: ImageIcon(
-          //   //   AssetImage("assets/images/5050_outlined.png"),
-          //   //   // color: Color(0xFF3A5A98),
-          //   // ),
-          //   title: Text(
-          //     'Video',
-          //   ),
-          //),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTap,
