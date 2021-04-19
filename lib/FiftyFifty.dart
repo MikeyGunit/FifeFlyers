@@ -105,74 +105,10 @@ class FiftyFifty extends StatelessWidget {
       )
     ]);
 
-    // Bottom Navigation bar.
-    final makeBottom = Container(
-      height: 55.0,
-      child: BottomAppBar(
-        color: Color.fromRGBO(31, 66, 146, 1.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            // Home Button
-            IconButton(
-              icon: Icon(Icons.home_outlined, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-
-            // Shop Button
-            IconButton(
-              icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Shop()),
-                );
-              },
-            ),
-
-
-            Image.asset(
-              'assets/images/Logo.png',
-              width: 70,
-            ),
-
-            // Video Library Button
-            IconButton(
-              icon: Icon(Icons.video_library_outlined, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
-            ),
-
-            // Profile Button
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FiftyFifty()));
-              },
-              child: Image.asset(
-                'assets/images/5050.png',
-                width: 20,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
       appBar: topAppBar,
-      body: makeBody,
-      bottomNavigationBar: makeBottom,
+      body: makeBody
     );
   }
 }

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:blahblah/FiftyFifty.dart';
 import 'channel_model.dart';
 import 'video_model.dart';
 import 'video_screen.dart';
 import 'api_service.dart';
-
-import 'package:blahblah/Dashboard.dart';
-import 'package:blahblah/Shop.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -140,68 +136,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _isLoading = false;
   }
 
-  // Bottom Navigation bar.
-  get makeBottom => Container(
-    height: 55.0,
-    child: BottomAppBar(
-      color: Color.fromRGBO(31, 66, 146, 1.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          // Home Button
-          IconButton(
-            icon: Icon(Icons.home_outlined, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Dashboard()),
-              );
-            },
-          ),
-
-          // Shop Button
-          IconButton(
-            icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Shop()),
-              );
-            },
-          ),
-
-          Image.asset(
-            'assets/images/Logo.png',
-            width: 70,
-          ),
-
-          // Video Library Button
-          IconButton(
-            icon: Icon(Icons.video_library, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
-              );
-            },
-          ),
-
-          // Profile Button
-          InkWell(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FiftyFifty()));
-            },
-            child: Image.asset(
-              'assets/images/5050_outlined.png',
-              width: 20,
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,7 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color.fromRGBO(31, 66, 146, 1.0),
         title: Text('Flyers TV'),
       ),
-      bottomNavigationBar: makeBottom,
       body: _channel != null
           ? NotificationListener<ScrollNotification>(
         onNotification: (ScrollNotification scrollDetails) {
