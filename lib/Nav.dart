@@ -52,7 +52,7 @@ class _NavState extends State<Nav> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/images/Logo.png"),
+            icon: Image.asset("assets/images/Logo.png", height: MediaQuery.of(context).orientation == Orientation.portrait ? 50 : 35),
             title: Text(
               'Logo',
             ),
