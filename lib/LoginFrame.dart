@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_session/flutter_session.dart';
 
+import 'Nav.dart';
+
 class Login extends StatefulWidget {
   final Function cancelToHome;
   final Function goToLostPassword;
@@ -57,7 +59,7 @@ class _LoginState extends State<Login> {
 
       // Send them to the dashboard.
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Dashboard()));
+          context, MaterialPageRoute(builder: (context) => Nav()));
     } else {
       // If Username or Password did not Matched.
       // Hiding the CircularProgressIndicator.
