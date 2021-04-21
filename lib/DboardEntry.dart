@@ -22,6 +22,7 @@ class DboardAppEntry {
   String title;
   String text;
   String heroImage;
+  String videoID;
 
   DboardAppEntry(
       {this.id,
@@ -29,5 +30,6 @@ class DboardAppEntry {
         this.mediaType,
         this.title,
         this.text,
-        this.heroImage});
+        this.heroImage,
+      this.videoID});
 }

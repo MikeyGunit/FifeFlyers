@@ -60,7 +60,8 @@ class _ListPageState extends State<ListPage> {
           mediaType: u["mediaType"],
           title: u["title"],
           text: u["text"],
-          heroImage: u["heroImage"]);
+          heroImage: u["heroImage"],
+          videoID: u["videoID"]);
 
       news2.add(entry);
     }

@@ -26,7 +26,7 @@ class _NavState extends State<Nav> {
   var _audioPlayer;
   final randomNumberGenerator = new Random();
 
-  var audioFileNames = ["RatherStayInKirkcaldy", "kirkcaldy1", "kirkcaldy2"];
+  var audioFileNames = ["RatherStayInKirkcaldy", "kirkcaldy1"];
 
   @override
   void initState() {
@@ -39,8 +39,8 @@ class _NavState extends State<Nav> {
       //random number between 1 and 10
       var randomNumber = randomNumberGenerator.nextInt(10) + 1;
 
-      //60% chance of RatherStayInKirkcaldy, 30% chance of kirkcaldy1, 10% chance of kirkcaldy2
-      var mp3Index = randomNumber <= 6 ? 0 : randomNumber <= 9 ? 1 : 2;
+      //90% chance of RatherStayInKirkcaldy, 10% chance of kirkcaldy1
+      var mp3Index = randomNumber <= 9 ? 0 : 1;
 
       //stop any previous sound from playing
       if (_audioPlayer != null)
@@ -102,6 +102,7 @@ class _NavState extends State<Nav> {
           ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Color.fromRGBO(250, 208, 26, 1.0),
         onTap: _onItemTap,
         selectedFontSize: 13.0,
         unselectedFontSize: 13.0,
