@@ -1,4 +1,4 @@
-import 'package:blahblah/VideoPageFiles/video_screen.dart';
+import 'VideoPageFiles/video_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'DboardEntry.dart';

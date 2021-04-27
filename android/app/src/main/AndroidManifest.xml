@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fifeflyers.blahblah">
-   <application
-        android:label="blahblah"
+    package="fifeflyers.FifeFlyers">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:label="FifeFlyers"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

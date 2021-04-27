@@ -1,10 +1,10 @@
 import 'dart:math' show Random;
 
 import 'package:audioplayers/audio_cache.dart';
-import 'package:blahblah/Dashboard.dart';
-import 'package:blahblah/FiftyFifty.dart';
-import 'package:blahblah/Shop.dart';
-import 'package:blahblah/VideoPageFiles/home_screen.dart';
+import 'Dashboard.dart';
+import 'FiftyFifty.dart';
+import 'Shop.dart';
+import 'VideoPageFiles/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class Nav extends StatefulWidget {

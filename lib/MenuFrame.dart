@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'LoginFrame.dart';
 import 'video_widget.dart';
-import 'package:blahblah/RegisterFrame.dart';
+import 'RegisterFrame.dart';
 import 'LostPassword.dart';
-import 'package:blahblah/InitialLoginFrame.dart';
+import 'InitialLoginFrame.dart';
 
 class MenuFrame extends StatelessWidget {
   PageController pageController = PageController();

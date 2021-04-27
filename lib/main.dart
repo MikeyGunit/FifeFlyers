@@ -1,9 +1,9 @@
-import 'package:blahblah/Nav.dart';
+import 'Nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
 
 // Keep for the login screen.
-import 'package:blahblah/MenuFrame.dart';
+import 'MenuFrame.dart';
 
 // Keep for the dashboard screen.
 import 'Dashboard.dart';

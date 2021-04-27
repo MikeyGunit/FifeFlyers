@@ -1,4 +1,4 @@
-package fifeflyers.blahblah
+package fifeflyers.FifeFlyers
 
 import io.flutter.embedding.android.FlutterActivity
 
