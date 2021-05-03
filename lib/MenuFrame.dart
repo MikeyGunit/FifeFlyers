@@ -59,12 +59,51 @@ class MenuFrame extends StatelessWidget {
                               duration: Duration(milliseconds: 200),
                               curve: Curves.easeIn);
                         },
-
-
                       ),
                     ],
                   ),
                 ),
+
+                //Expanded(
+                Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text("REPORT A BUG",
+                            style: TextStyle(
+                              color: Color.fromRGBO(250, 208, 26, 1.0),
+                              fontSize: 12,
+                              fontFamily: 'CaptainAmerican',
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 2.0,
+                                  color: Color.fromRGBO(31, 66, 146, 1.0),
+                                  offset: Offset(1.0, 1.0),
+                                )
+                              ],
+                            ),),
+
+                          Text("BUILD: 2.0.2",
+                            style: TextStyle(
+                              color: Color.fromRGBO(250, 208, 26, 1.0),
+                              fontSize: 12,
+                              fontFamily: 'CaptainAmerican',
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 2.0,
+                                  color: Color.fromRGBO(31, 66, 146, 1.0),
+                                  offset: Offset(1.0, 1.0),
+                                )
+                              ],
+                            ),),
+                        ]),
+                  ),
+                ),
+
+                //),
               ],
             ),
           ),

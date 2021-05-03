@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
   bool visible = false;
 
   // Getting value from TextField widget.
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   Future userLogin() async {
@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
     });
 
     // Getting value from Controller
-    String username = usernameController.text;
+    String email = emailController.text;
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
         'https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/login_user.php';
 
     // Store all data with Param Name.
-    var data = {'username': username, 'password': password};
+    var data = {'email': email, 'password': password};
 
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
 
     // If the Response Message is Matched.
     if (message == 'Login Matched') {
-      await FlutterSession().set('token', username);
+      await FlutterSession().set('token', email);
 
       // Hiding the CircularProgressIndicator.
       setState(() {
@@ -115,7 +115,7 @@ class _LoginState extends State<Login> {
             // Username Field
             TextField(
               decoration: InputDecoration(
-                hintText: 'Enter Username',
+                hintText: 'Enter E-mail',
                 hintStyle: TextStyle(
                   color: Colors.white.withOpacity(0.8),
                 ),
@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
                 color: Colors.white,
                 fontSize: 22.0,
               ),
-              controller: usernameController,
+              controller: emailController,
               autocorrect: true,
             ),
 
@@ -200,17 +200,17 @@ class _LoginState extends State<Login> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   InkWell(
                     onTap: () {
                       widget.goToLostPassword();
                     },
                     child: Text(
-                      'Forgotten password?',
+                      'FORGOTTEN PASSWORD?',
                       style: TextStyle(
                           color: Colors.white,
-                          fontStyle: FontStyle.italic,
+                          fontSize: 10,
                           shadows: [
                             Shadow(
                               blurRadius: 2.0,
@@ -225,10 +225,10 @@ class _LoginState extends State<Login> {
                       widget.cancelToHome();
                     },
                     child: Text(
-                      'Home Screen',
+                      'HOME SCREEN',
                       style: TextStyle(
                           color: Colors.white,
-                          fontStyle: FontStyle.italic,
+                          fontSize: 10,
                           shadows: [
                             Shadow(
                               blurRadius: 2.0,

@@ -5,6 +5,7 @@ import 'Shop.dart';
 import 'VideoPageFiles/home_screen.dart';
 
 import 'package:video_player/video_player.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 class VideoWidget extends StatefulWidget {
   @override
@@ -72,32 +73,30 @@ class FiftyFifty extends StatelessWidget {
               Text(
                 "50/50",
                 style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 50,
-                  fontFamily: 'CaptainAmerican',
+                    color: Colors.yellow,
+                    fontSize: 50,
+                    fontFamily: 'CaptainAmerican',
                     shadows: [
                       Shadow(
                         blurRadius: 2.0,
                         color: Color.fromRGBO(31, 66, 146, 1.0),
                         offset: Offset(3.0, 3.0),
                       )
-                    ]
-                ),
+                    ]),
               ),
               Text(
                 "COMING SOON",
                 style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 50,
-                  fontFamily: 'CaptainAmerican',
+                    color: Colors.yellow,
+                    fontSize: 50,
+                    fontFamily: 'CaptainAmerican',
                     shadows: [
                       Shadow(
                         blurRadius: 2.0,
                         color: Colors.blue,
                         offset: Offset(1.0, 1.0),
                       )
-                    ]
-                ),
+                    ]),
               )
             ],
           ),
@@ -106,9 +105,8 @@ class FiftyFifty extends StatelessWidget {
     ]);
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
-      appBar: topAppBar,
-      body: makeBody
-    );
+        backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+        appBar: topAppBar,
+        body: makeBody);
   }
 }

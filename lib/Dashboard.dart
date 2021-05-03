@@ -23,7 +23,6 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: new ThemeData(primaryColor: Color.fromRGBO(98, 82, 10, 1.0)),
       home: new ListPage(title: 'Lessons'),
     );
@@ -40,14 +39,10 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-
-
   // Future to create the App Exclusive block.
   Future<List<DboardAppEntry>> _populateNews2() async {
-    var appData = await http
-        .get(
+    var appData = await http.get(
         'https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/getAppNews.php');
-
 
     var jsonAppData = json.decode(appData.body);
 
@@ -105,9 +100,7 @@ class _ListPageState extends State<ListPage> {
     //actions:
   );
 
-
-  get makeBody1 =>
-      Container(
+  get makeBody1 => Container(
         child: FutureBuilder(
             future: _populateNews2(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -117,7 +110,6 @@ class _ListPageState extends State<ListPage> {
                 );
               } else {
                 return InkWell(
-
                   /*
                   onTap: () {
                     Navigator.push(
@@ -127,7 +119,7 @@ class _ListPageState extends State<ListPage> {
                             DetailPage(
                               dboardAppEntry: snapshot.data[index]),
                             ),);
-                    
+
                   },
 
                    */
@@ -135,7 +127,6 @@ class _ListPageState extends State<ListPage> {
                   child: Container(
                     height: 200,
                     child: ListView.builder(
-
                         scrollDirection: Axis.horizontal,
                         itemCount: snapshot.data.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -149,34 +140,29 @@ class _ListPageState extends State<ListPage> {
                               ),
                             ),
                             //height: 50,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             //child:
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      DetailPage2(
-                                          dboardAppEntry: snapshot.data[index]),
-                                ),
-                              );
-                            },
-
-                          ),
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage2(
+                                        dboardAppEntry: snapshot.data[index]),
+                                  ),
+                                );
+                              },
+                            ),
                           );
                         }),
                   ),
                 );
               }
-            }),);
+            }),
+      );
 
   // Middle section (page content)
-  get makeBody =>
-      Container(
+  get makeBody => Container(
         child: FutureBuilder(
           future: _populateNews(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -186,7 +172,6 @@ class _ListPageState extends State<ListPage> {
               );
             } else {
               return Column(children: <Widget>[
-
                 // Top "App Exclusive" Hero box.
                 makeBody1,
 
@@ -291,19 +276,17 @@ class _ListPageState extends State<ListPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      DetailPage(
-                                          dboardEntry: snapshot.data[index]),
+                                  builder: (context) => DetailPage(
+                                      dboardEntry: snapshot.data[index]),
                                 ),
                               );
                             },
                           ),
                         ),
                       );
-
                     },
                     separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
+                        const Divider(),
                   ),
                 ),
               ]);
@@ -315,9 +298,8 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
-      appBar: topAppBar,
-      body: makeBody
-    );
+        backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+        appBar: topAppBar,
+        body: makeBody);
   }
 }
