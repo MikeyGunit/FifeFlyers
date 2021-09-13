@@ -1,7 +1,7 @@
 # iOS deployment
 
 ## Mikey:
-1. Use '[Apple Connect](https://appstoreconnect.apple.com)' to make a new iOs build somehow: hover over the blue '+' on the right.
+1. Use '[Apple Connect](https://appstoreconnect.apple.com)' to make a new iOS build somehow: hover over the blue '+' on the right.
 ## Martin:
 2. Open '/Users/mjgroves/development/project/FifeFlyers/ios/Runner.xcodeproj' in XCode.
 3. Select TARGETS > Runner > General and change Version and Build to match the Apple Connect values.
