@@ -19,28 +19,12 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final topContent = Stack(
       children: <Widget>[
-        Container(
-            padding: EdgeInsets.only(left: 10.0),
-            height: MediaQuery.of(context).size.height * 0.25,
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                image: NetworkImage(
-                    "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/Hero/" +
-                        dboardEntry.heroImage),
-                fit: BoxFit.fill,
-              ),
-            )),
-        /* Container(
-          height: MediaQuery.of(context).size.height * 0.5,
-          padding: EdgeInsets.all(40.0),
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(color: Color.fromRGBO(31, 66, 146, 1.0)),
-          child: Center(
-            child: topContentText,
-          ),
+        Hero(
+          tag: dboardEntry.heroImage,
+          child: Image.network(
+              "https://www.fifeflyers.co.uk/NewWebsite/App/Images/News/Hero/" +
+                  dboardEntry.heroImage),
         ),
-
-        */
       ],
     );
 

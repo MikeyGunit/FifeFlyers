@@ -1,9 +1,12 @@
+import 'package:FifeFlyers/services/storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'Dashboard.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_session/flutter_session.dart';
+import 'services/storage.dart';
 
 import 'Nav.dart';
 
@@ -19,7 +22,22 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   // For CircularProgressIndicator.
+
+  @override
+  initState() {
+    // TODO: implement initState
+    super.initState();
+    test();
+  }
+
+  void test() async {
+    emailController.text = await secureStorage.readSecureData('email');
+
+    setState(() {});
+  }
+
   bool visible = false;
+  final SecureStorage secureStorage = SecureStorage();
 
   // Getting value from TextField widget.
   final emailController = TextEditingController();
@@ -37,7 +55,7 @@ class _LoginState extends State<Login> {
 
     // SERVER LOGIN API URL
     var url =
-        'https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/login_user.php';
+        'https://www.fifeflyers.co.uk/NewWebsite/App/Scripts/login_user2.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
@@ -50,6 +68,13 @@ class _LoginState extends State<Login> {
 
     // If the Response Message is Matched.
     if (message == 'Login Matched') {
+      // If they want their details remembered, write them to secure storage.
+      if (_rememberPassword == true) {
+        //await secureStorage.writeSecureData('email', email);
+        await secureStorage.writeSecureData('email', emailController.text);
+      }
+
+      // This is bs code - We'll use local storage to store details about the user.
       await FlutterSession().set('token', email);
 
       // Hiding the CircularProgressIndicator.
@@ -58,8 +83,7 @@ class _LoginState extends State<Login> {
       });
 
       // Send them to the dashboard.
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Nav()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Nav()));
     } else {
       // If Username or Password did not Matched.
       // Hiding the CircularProgressIndicator.
@@ -112,7 +136,7 @@ class _LoginState extends State<Login> {
               ),
             ),
 
-            // Username Field
+            // Email Field
             TextField(
               decoration: InputDecoration(
                 hintText: 'Enter E-mail',
@@ -156,6 +180,11 @@ class _LoginState extends State<Login> {
                       onChanged: (newValue) {
                         setState(() {
                           _rememberPassword = newValue;
+
+                          final SecureStorage secureStorage = SecureStorage();
+
+                          final email = secureStorage.readSecureData('email');
+                          final password = secureStorage.readSecureData('name');
                         });
                       }),
                   Text(

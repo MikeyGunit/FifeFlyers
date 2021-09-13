@@ -6,16 +6,17 @@ import 'package:flutter_session/flutter_session.dart';
 import 'MenuFrame.dart';
 
 // Keep for the dashboard screen.
-import 'Dashboard.dart';
+//import 'Dashboard.dart';
+
+// For building the new Starting menu.
+import 'StartingMenu.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  dynamic token = FlutterSession().get('token');
 
   runApp(
       MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Official Fife Flyers App',
+    title: 'The Fife Flyers',
     theme: ThemeData(
       primarySwatch: Colors.indigo,
       secondaryHeaderColor: Colors.yellow,
@@ -25,7 +26,7 @@ void main() {
     ),
          // This is the code that should be used for live.
         //home: token != '' ? MenuFrame() : Dashboard(),
-        home: MenuFrame(), // MenuFrame for the login screen, Nav for bypassing login.
+        home: Nav(), // MenuFrame for the login screen, Nav for bypassing login.
   ),
   );
 }

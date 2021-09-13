@@ -1,7 +1,4 @@
-import 'dart:math' show Random;
-
-import 'package:audioplayers/audio_cache.dart';
-import 'Dashboard.dart';
+import 'StartingMenu.dart';
 import 'FiftyFifty.dart';
 import 'Shop.dart';
 import 'VideoPageFiles/home_screen.dart';
@@ -22,11 +19,6 @@ class _NavState extends State<Nav> {
     FiftyFifty()
   ];
 
-  final _audioCache = AudioCache();
-  var _audioPlayer;
-  final randomNumberGenerator = new Random();
-
-  var audioFileNames = ["RatherStayInKirkcaldy", "kirkcaldy1"];
 
   @override
   void initState() {
@@ -35,25 +27,13 @@ class _NavState extends State<Nav> {
 
   void _onItemTap(int index) async {
     //Flyers logo
-    if (index == 2) {
-      //random number between 1 and 10
-      var randomNumber = randomNumberGenerator.nextInt(10) + 1;
-
-      //90% chance of RatherStayInKirkcaldy, 10% chance of kirkcaldy1
-      var mp3Index = randomNumber <= 9 ? 0 : 1;
-
-      //stop any previous sound from playing
-      if (_audioPlayer != null)
-        _audioPlayer.stop();
-
-      _audioPlayer = await _audioCache.play("sounds/" + audioFileNames[mp3Index] + ".mp3");
-    }
     //menu option
-    else {
+    if (index != 2) {
       setState(() {
         _selectedIndex = index;
       });
     }
+
   }
 
   @override
